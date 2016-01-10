@@ -1,5 +1,8 @@
 module.exports = {
-    init: function (successHandler, errorHandler) {
-        cordova.exec(successHandler, errorHandler, "UMengAnalyticsPlugin", "init", []);
+    resume: function (successHandler, errorHandler) {
+        cordova.exec(successHandler, errorHandler, "UMengAnalyticsPlugin", "resume", []);
+    },
+    pause: function (successHandler, errorHandler) {
+        cordova.exec(successHandler, errorHandler, "UMengAnalyticsPlugin", "pause", []);
     }
 };

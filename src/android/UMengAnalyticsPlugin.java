@@ -1,6 +1,6 @@
-package com.myideaway.cordova.umeng.update;
+package com.myideaway.cordova.umeng.analytics;
 
-import com.umeng.update.UmengUpdateAgent;
+import com.umeng.analytics.MobclickAgent;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -13,20 +13,26 @@ import org.json.JSONException;
 public class UMengAnalyticsPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("init")) {
-            init(args, callbackContext);
+        if (action.equals("resume")) {
+            resume(args, callbackContext);
+            return true;
+        } else if (action.equals("pause")) {
+            pause(args, callbackContext);
             return true;
         }
-
         return false;
     }
 
-    private void init(JSONArray args, CallbackContext callbackContext) {
-        UmengUpdateAgent.setUpdateOnlyWifi(false);
-        UmengUpdateAgent.update(cordova.getActivity());
+    private void resume(JSONArray args, CallbackContext callbackContext) {
+        MobclickAgent.onResume(cordova.getActivity());
 
         callbackContext.success();
     }
 
+    private void pause(JSONArray args, CallbackContext callbackContext) {
+        MobclickAgent.onPause(cordova.getActivity());
+
+        callbackContext.success();
+    }
 
 }
