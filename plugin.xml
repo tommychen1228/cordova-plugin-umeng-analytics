@@ -34,4 +34,19 @@
         <!-- src -->
         <source-file src="src/android/UMengAnalyticsPlugin.java" target-dir="src/com/myideaway/cordova/umeng/analytics"/>
     </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="UMengAnalyticsPlugin">
+                <param name="ios-package" value="UMengAnalyticsPlugin"/>
+            </feature>
+        </config-file>
+        <!-- libs -->
+        <header-file src="libs/ios/MobClick.h" />
+        <header-file src="libs/ios/MobClickSocialAnalytics.h" />
+        <source-file src="libs/ios/libMobClickLibrary.a" framework="true" />
+        <framework src="libz.tbd" weak="true" />
+        <!-- src -->
+        <header-file src="src/ios/UMengAnalyticsPlugin.h" />
+        <source-file src="src/ios/UMengAnalyticsPlugin.m"/>
+    </platform>
 </plugin>
