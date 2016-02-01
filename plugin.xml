@@ -34,7 +34,7 @@
         <source-file src="src/android/UMengAnalyticsPlugin.java" target-dir="src/com/myideaway/cordova/umeng/analytics"/>
     </platform>
     <platform name="ios">
-        <config-file parent="/*" target="res/xml/config.xml">
+        <config-file target="config.xml" parent="/*">
             <feature name="UMengAnalyticsPlugin">
                 <param name="ios-package" value="UMengAnalyticsPlugin"/>
             </feature>

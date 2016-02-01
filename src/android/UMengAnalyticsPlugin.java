@@ -1,5 +1,6 @@
 package com.myideaway.cordova.umeng.analytics;
 
+import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
 import org.apache.cordova.CallbackContext;
@@ -19,6 +20,9 @@ public class UMengAnalyticsPlugin extends CordovaPlugin {
         } else if (action.equals("pause")) {
             pause(args, callbackContext);
             return true;
+        } else if (action.equals("initApp")) {
+            initApp(args, callbackContext);
+            return true;
         }
         return false;
     }
@@ -31,6 +35,15 @@ public class UMengAnalyticsPlugin extends CordovaPlugin {
 
     private void pause(JSONArray args, CallbackContext callbackContext) {
         MobclickAgent.onPause(cordova.getActivity());
+
+        callbackContext.success();
+    }
+
+    private void initApp(JSONArray args, CallbackContext callbackContext) {
+        String androidAppkey = args.optString(0);
+        String iosAppKey = args.optString(1);
+
+        AnalyticsConfig.setAppkey(cordova.getActivity().getApplicationContext(), androidAppkey);
 
         callbackContext.success();
     }
